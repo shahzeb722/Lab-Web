@@ -1,0 +1,194 @@
+/* RESET & BASE */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "SamsungOne", "Segoe UI", Arial, sans-serif;
+    color: #000;
+    background-color: #fff;
+}
+
+.container {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* UTILITY BAR */
+
+.utility-bar {
+    background: #f8f8f8;
+    height: 34px;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 12px;
+}
+
+.utility-bar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.utility-bar a {
+    text-decoration: none;
+    color: #000;
+    margin-right: 20px;
+    font-weight: 600;
+}
+
+/* MAIN HEADER */
+
+.main-header {
+    height: 70px;
+    border-bottom: 1px solid #e5e5e5;
+    background: #fff;
+}
+
+.header-flex {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 20px;
+}
+
+.nav-links {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 700;
+    font-size: 14px;
+    margin: 0 12px;
+}
+
+.nav-icons {
+    display: flex;
+}
+
+.nav-icons .icon {
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+/* HERO */
+
+.main-hero {
+    height: 640px;
+    background: #f4f4f4;
+    display: flex;
+    align-items: center;
+}
+
+.hero-text {
+    padding-left: 10%;
+    width: 480px;
+}
+
+.hero-text h2 {
+    font-size: 52px;
+    margin-bottom: 15px;
+}
+
+.hero-image {
+    flex: 1;
+    height: 100%;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* BUTTONS */
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 12px 35px;
+    border-radius: 25px;
+    text-decoration: none;
+}
+
+.btn-black {
+    background: #000;
+    color: #fff;
+}
+
+.btn-outline {
+    border: 2px solid #000;
+    color: #000;
+}
+
+/* OFFER GRID */
+
+.offer-grid {
+    padding: 60px 0;
+}
+
+.offer-grid .container {
+    display: flex;
+    gap: 24px;
+}
+
+.offer-card {
+    flex: 1;
+    height: 450px;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.offer-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-content {
+    position: absolute;
+    top: 40px;
+    padding: 0 20px;
+}
+
+/* CATEGORIES */
+
+.section-title {
+    text-align: center;
+    font-size: 36px;
+    margin: 40px 0;
+}
+
+.cat-grid {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 60px;
+}
+
+.circle-img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: #f7f7f7;
+}
+
+/* FOOTER */
+
+.main-footer {
+    padding: 40px 0;
+    border-top: 1px solid #e5e5e5;
+    text-align: center;
+}
