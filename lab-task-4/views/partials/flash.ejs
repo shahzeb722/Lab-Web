@@ -1,0 +1,10 @@
+<% if (flash && (flash.success.length || flash.error.length)) { %>
+    <div class="flash-stack">
+        <% flash.success.forEach(function (message) { %>
+            <div class="flash flash--success"><%= message %></div>
+        <% }); %>
+        <% flash.error.forEach(function (message) { %>
+            <div class="flash flash--error"><%= message %></div>
+        <% }); %>
+    </div>
+<% } %>

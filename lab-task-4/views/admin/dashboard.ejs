@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Samsung Clone</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="admin-body">
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="admin-brand">Samsung Admin</div>
+            <nav class="admin-nav">
+                <a href="/admin/products" class="admin-nav-link active">Products</a>
+                <a href="/products" class="admin-nav-link">View Store</a>
+                <a href="/" class="admin-nav-link">Home</a>
+            </nav>
+            <div class="admin-user">
+                <span><%= currentUser ? currentUser.name : 'Admin' %></span>
+                <form class="inline-form" method="POST" action="/logout">
+                    <button class="link-button" type="submit">Logout</button>
+                </form>
+            </div>
+        </aside>
+
+        <main class="admin-main">
+            <div class="admin-header">
+                <div>
+                    <h1>Product Dashboard</h1>
+                    <p class="admin-subtitle">Manage inventory, pricing, and stock.</p>
+                </div>
+                <a class="btn btn-black" href="/admin/products/new">Add Product</a>
+            </div>
+
+            <%- include('../partials/flash') %>
+
+            <% if (!products || products.length === 0) { %>
+                <div class="admin-empty">No products yet. Add your first product to get started.</div>
+            <% } else { %>
+                <div class="admin-table-wrap">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Rating</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% products.forEach(function (product) { %>
+                                <tr>
+                                    <td>
+                                        <div class="admin-product">
+                                            <img class="admin-thumb" src="<%= product.image || '/img/mobile.webp' %>" alt="<%= product.name %>">
+                                            <div>
+                                                <div class="admin-product-name"><%= product.name %></div>
+                                                <div class="admin-product-meta"><%= product.category %></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>$<%= product.price.toFixed(2) %></td>
+                                    <td><%= product.stock %></td>
+                                    <td><%= product.rating.toFixed(1) %></td>
+                                    <td>
+                                        <div class="admin-actions">
+                                            <a class="admin-link" href="/admin/products/<%= product._id %>/edit">Edit</a>
+                                            <form method="POST" action="/admin/products/<%= product._id %>/delete" onsubmit="return confirm('Delete this product?');">
+                                                <button class="admin-link admin-link--danger" type="submit">Delete</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            <% } %>
+        </main>
+    </div>
+</body>
+</html>
