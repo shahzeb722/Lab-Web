@@ -9,7 +9,7 @@ hamburger.addEventListener('click', function () {
     hamburger.classList.toggle('open');
 });
 
-// Bonus: close menu when any nav link is clicked
+// close menu when any nav link is clicked
 const navItems = document.querySelectorAll('.nav-item');
 navItems.forEach(function (item) {
     item.addEventListener('click', function () {
