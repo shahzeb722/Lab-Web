@@ -1,0 +1,37 @@
+<div class="container product-details" style="max-width: 1200px; margin: 4rem auto; padding: 0 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;">
+    <div class="product-image-container" style="background: #f7fafc; padding: 3rem; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+        <img src="<%= product.image %>" alt="<%= product.name %>" style="max-width: 100%; height: auto; object-fit: contain;">
+    </div>
+    
+    <div class="product-info-container">
+        <div style="margin-bottom: 1rem;">
+            <span style="display: inline-block; padding: 0.25rem 0.75rem; background: #edf2f7; color: #4a5568; border-radius: 9999px; font-size: 0.875rem; font-weight: 500;"><%= product.category ? product.category.name : 'Uncategorized' %></span>
+        </div>
+        
+        <h1 style="font-size: 2.5rem; font-weight: 700; color: #1a202c; margin-bottom: 1rem;"><%= product.name %></h1>
+        
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+            <div style="color: #ecc94b; font-size: 1.25rem;">★</div>
+            <span style="color: #4a5568; font-weight: 500;"><%= product.rating ? product.rating.toFixed(1) : '0.0' %> / 5</span>
+            <span style="color: #cbd5e0;">|</span>
+            <span style="color: <%= product.stock > 0 ? '#38a169' : '#e53e3e' %>; font-weight: 600;"><%= product.stock > 0 ? 'In Stock' : 'Out of Stock' %></span>
+        </div>
+        
+        <p style="font-size: 2rem; font-weight: 700; color: #2b6cb0; margin-bottom: 2rem;">$<%= product.price.toFixed(2) %></p>
+        
+        <div style="margin-bottom: 3rem;">
+            <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.75rem;">Description</h3>
+            <p style="color: #4a5568; line-height: 1.7; font-size: 1.05rem;"><%= product.description %></p>
+        </div>
+        
+        <form action="/cart/add/<%= product._id %>" method="POST" style="display: flex; gap: 1rem; align-items: flex-end;">
+            <div>
+                <label for="quantity" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #4a5568;">Quantity</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1" max="<%= product.stock %>" style="width: 80px; padding: 0.875rem; border: 1px solid #cbd5e0; border-radius: 8px; font-size: 1.125rem; text-align: center;">
+            </div>
+            <button type="submit" style="flex: 1; padding: 1rem; background: #000; color: #fff; border: none; border-radius: 8px; font-size: 1.125rem; font-weight: 600; cursor: pointer; transition: background 0.2s;" <%= product.stock === 0 ? 'disabled' : '' %>>
+                <%= product.stock > 0 ? 'Add to Cart' : 'Out of Stock' %>
+            </button>
+        </form>
+    </div>
+</div>

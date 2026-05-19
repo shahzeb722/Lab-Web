@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | Samsung Clone</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <!-- Utility Bar -->
+    <div class="utility-bar">
+        <div class="container">
+            <div class="utility-left">
+                <a href="#">For Business</a>
+                <a href="#">Support</a>
+            </div>
+            <div class="utility-right">
+                <a href="#">Sign In</a>
+                <a href="#">Create Account</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container header-flex">
+            <div class="logo">
+                <svg focusable="false" aria-label="Samsung" width="130" height="29" viewBox="0 0 130 29">
+                    <g transform="translate(-250 -7)">
+                        <path d="M0,13.835V12.482H4.609V14.2a1.558,1.558,0,0,0,1.724,1.6A1.509,1.509,0,0,0,8,14.6a2.237,2.237,0,0,0-.03-1.322C7.076,10.976.981,9.931.208,6.333a6.531,6.531,0,0,1-.029-2.4C.654,1.045,3.122,0,6.184,0c2.438,0,5.8.585,5.8,4.458V5.719H7.7V4.612a1.492,1.492,0,0,0-1.605-1.6,1.452,1.452,0,0,0-1.575,1.2,2.468,2.468,0,0,0,.03.922c.5,2.059,7.017,3.167,7.73,6.887a8.481,8.481,0,0,1,.029,2.921C11.892,17.893,9.336,19,6.244,19,3,19,0,17.8,0,13.835Zm55.837-.062V12.421h4.549v1.691a1.533,1.533,0,0,0,1.695,1.6,1.49,1.49,0,0,0,1.665-1.168,2.147,2.147,0,0,0-.029-1.292c-.863-2.274-6.9-3.319-7.671-6.917a6.37,6.37,0,0,1-.03-2.367c.476-2.859,2.944-3.9,5.946-3.9,2.409,0,5.739.615,5.739,4.427v1.23H63.449V4.643a1.485,1.485,0,0,0-1.575-1.6,1.4,1.4,0,0,0-1.546,1.168,2.463,2.463,0,0,0,.029.922C60.832,7.194,67.284,8.27,68,11.959a8.314,8.314,0,0,1,.029,2.89c-.416,2.952-2.943,4.028-6.005,4.028C58.811,18.877,55.837,17.678,55.837,13.773Zm16.293.647A7.18,7.18,0,0,1,72.1,13.25V.523h4.341V13.65a5.023,5.023,0,0,0,.029.677,1.682,1.682,0,0,0,3.271,0,4.852,4.852,0,0,0,.03-.677V.523h4.341V13.25c0,.339-.03.984-.03,1.169-.3,3.319-2.825,4.4-5.976,4.4S72.428,17.739,72.13,14.419Zm35.739-.185a9.539,9.539,0,0,1-.059-1.168V5.6c0-.308.029-.861.059-1.169.386-3.319,2.973-4.365,6.036-4.365,3.033,0,5.708,1.045,6.006,4.365A8.781,8.781,0,0,1,119.94,5.6v.584H115.6V5.2a3.791,3.791,0,0,0-.059-.677,1.777,1.777,0,0,0-3.42,0,3.772,3.772,0,0,0-.059.829v8.117a5.1,5.1,0,0,0,.03.677,1.707,1.707,0,0,0,1.813,1.291,1.633,1.633,0,0,0,1.754-1.291,2.554,2.554,0,0,0,.03-.677V10.883h-1.754V8.3H120v4.765a9.377,9.377,0,0,1-.06,1.168c-.3,3.228-3,4.366-6.036,4.366S108.166,17.462,107.869,14.235Zm-60.5,4.027L47.245,1.845,44.272,18.262H39.931L36.987,1.845l-.118,16.417H32.587L32.943.554h6.988L42.1,14.388,44.272.554h6.987l.386,17.708Zm-22.835,0L22.211,1.845,19.831,18.262H15.194L18.344,.554h7.642l3.152,17.708Zm72.665-.184L92.884,3.352l.238,14.726H88.9V.554h6.363l4.044,14.265L99.068.554h4.251V18.078Z" transform="translate(255 12)"></path>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- Hamburger Button (hidden on desktop) -->
+            <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="/" class="nav-item">Home</a>
+                <a href="/products" class="nav-item">Products</a>
+                <a href="#" class="nav-item">Mobile</a>
+                <a href="#" class="nav-item">TV &amp; Audio</a>
+                <a href="#" class="nav-item">Appliances</a>
+            </nav>
+
+            <div class="nav-icons">
+                <span class="icon">🔍</span>
+                <span class="icon">🛒</span>
+                <span class="icon">👤</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="catalog container">
+        <div class="catalog-header">
+            <div>
+                <h1 class="section-title">Product Catalog</h1>
+                <p class="catalog-subtitle"><%= totalProducts %> items found</p>
+            </div>
+        </div>
+
+        <form class="catalog-filters" method="GET" action="/products">
+            <div class="filter-group">
+                <label class="filter-label" for="search">Search</label>
+                <input class="filter-input" type="text" id="search" name="search" placeholder="Search by name" value="<%= filters.search %>">
+            </div>
+            <div class="filter-group">
+                <label class="filter-label" for="category">Category</label>
+                <select class="filter-select" id="category" name="category">
+                    <option value="">All Categories</option>
+                    <option value="Electronics" <%= filters.category === 'Electronics' ? 'selected' : '' %>>Electronics</option>
+                    <option value="Fashion" <%= filters.category === 'Fashion' ? 'selected' : '' %>>Fashion</option>
+                    <option value="Home" <%= filters.category === 'Home' ? 'selected' : '' %>>Home</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label class="filter-label" for="minPrice">Min Price</label>
+                <input class="filter-input" type="number" step="0.01" id="minPrice" name="minPrice" placeholder="0" value="<%= filters.minPrice %>">
+            </div>
+            <div class="filter-group">
+                <label class="filter-label" for="maxPrice">Max Price</label>
+                <input class="filter-input" type="number" step="0.01" id="maxPrice" name="maxPrice" placeholder="2000" value="<%= filters.maxPrice %>">
+            </div>
+            <div class="filter-group">
+                <label class="filter-label" for="sort">Sort</label>
+                <select class="filter-select" id="sort" name="sort">
+                    <option value="name_asc" <%= filters.sort === 'name_asc' ? 'selected' : '' %>>Name (A-Z)</option>
+                    <option value="price_asc" <%= filters.sort === 'price_asc' ? 'selected' : '' %>>Price (Low to High)</option>
+                    <option value="price_desc" <%= filters.sort === 'price_desc' ? 'selected' : '' %>>Price (High to Low)</option>
+                    <option value="rating_desc" <%= filters.sort === 'rating_desc' ? 'selected' : '' %>>Rating (High to Low)</option>
+                </select>
+            </div>
+            <div class="filter-actions">
+                <button class="btn btn-black" type="submit">Apply Filters</button>
+                <a class="btn btn-outline" href="/products">Reset</a>
+            </div>
+        </form>
+
+        <% if (errorMessage) { %>
+            <div class="catalog-error"><%= errorMessage %></div>
+        <% } %>
+
+        <div class="catalog-grid">
+            <% if (products.length === 0) { %>
+                <div class="empty-state">No products found. Try a different filter.</div>
+            <% } %>
+
+            <% products.forEach(function (product) { %>
+                <div class="product-card">
+                    <div class="product-card-image">
+                        <img src="<%= product.image %>" alt="<%= product.name %>">
+                    </div>
+                    <div class="product-card-info">
+                        <h3 class="product-title"><%= product.name %></h3>
+                        <div class="product-rating">
+                            <span class="product-rating-stars">★</span>
+                            <span class="product-rating-text"><%= product.rating.toFixed(1) %> / 5</span>
+                        </div>
+                        <div class="product-price">$<%= product.price.toFixed(2) %></div>
+                        <div class="product-card-meta">
+                            <span class="product-category"><%= product.category %></span>
+                            <span class="product-stock"><%= product.stock > 0 ? 'In Stock' : 'Out of Stock' %></span>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+
+        <% const queryPrefix = baseQueryString ? `?${baseQueryString}&` : '?'; %>
+        <div class="pagination">
+            <a class="page-link <%= pagination.currentPage === 1 ? 'disabled' : '' %>" href="/products<%= queryPrefix %>page=<%= pagination.currentPage - 1 %>">Previous</a>
+            <% for (let i = 1; i <= pagination.totalPages; i++) { %>
+                <a class="page-link <%= i === pagination.currentPage ? 'active' : '' %>" href="/products<%= queryPrefix %>page=<%= i %>"><%= i %></a>
+            <% } %>
+            <a class="page-link <%= pagination.currentPage === pagination.totalPages ? 'disabled' : '' %>" href="/products<%= queryPrefix %>page=<%= pagination.currentPage + 1 %>">Next</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <p>Copyright &copy; 1995-2026 SAMSUNG All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<section class="catalog container" style="margin-top: 2rem;">
+    <div class="catalog-header" style="margin-bottom: 2rem;">
+        <div>
+            <h1 class="section-title"><%= title %></h1>
+            <p class="catalog-subtitle">Page <%= currentPage %> of <%= totalPages %></p>
+        </div>
+    </div>
+
+    <form class="catalog-filters" method="GET" action="/shop" style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
+        <div class="filter-group" style="flex: 1; min-width: 200px;">
+            <input class="filter-input" type="text" id="search" name="search" placeholder="Search products..." value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>" style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e0; border-radius: 8px;">
+        </div>
+        <div class="filter-actions" style="display: flex; align-items: center;">
+            <button class="btn btn-black" type="submit" style="padding: 0.75rem 1.5rem; background: #000; color: #fff; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">Search</button>
+            <a href="/shop" style="margin-left: 1rem; color: #718096; text-decoration: none; font-weight: 500;">Clear</a>
+        </div>
+    </form>
+
+    <div class="catalog-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem;">
+        <% if (products.length === 0) { %>
+            <div class="empty-state" style="grid-column: 1 / -1; text-align: center; padding: 4rem; background: #f7fafc; border-radius: 12px;">
+                <h3 style="font-size: 1.25rem; font-weight: 600; color: #4a5568;">No products found</h3>
+            </div>
+        <% } %>
+
+        <% products.forEach(function (product) { %>
+            <div class="product-card" style="background: #fff; border: 1px solid #edf2f7; border-radius: 12px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s;">
+                <div class="product-card-image" style="background: #f7fafc; text-align: center; padding: 2rem;">
+                    <a href="/shop/product/<%= product.slug %>">
+                        <img src="<%= product.image %>" alt="<%= product.name %>" style="max-width: 100%; height: 200px; object-fit: contain;">
+                    </a>
+                </div>
+                <div class="product-card-info" style="padding: 1.5rem;">
+                    <a href="/shop/product/<%= product.slug %>" style="text-decoration: none; color: inherit;">
+                        <h3 class="product-title" style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem;"><%= product.name %></h3>
+                    </a>
+                    <div class="product-rating" style="color: #ecc94b; margin-bottom: 0.5rem;">
+                        <span class="product-rating-stars">★</span>
+                        <span class="product-rating-text" style="color: #718096; font-size: 0.875rem;"><%= product.rating ? product.rating.toFixed(1) : '0.0' %> / 5</span>
+                    </div>
+                    <div class="product-price" style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">$<%= product.price.toFixed(2) %></div>
+                    <div class="product-card-meta" style="display: flex; justify-content: space-between; align-items: center; font-size: 0.875rem; color: #718096; margin-bottom: 1.5rem;">
+                        <span class="product-category"><%= product.category ? product.category.name : 'N/A' %></span>
+                        <span class="product-stock"><%= product.stock > 0 ? 'In Stock' : 'Out of Stock' %></span>
+                    </div>
+                    <form action="/cart/add/<%= product._id %>" method="POST">
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" style="width: 100%; padding: 0.75rem; background: #000; color: #fff; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+
+    <% if (totalPages > 1) { %>
+        <div class="pagination" style="margin-top: 3rem; display: flex; justify-content: center; gap: 0.5rem;">
+            <% let baseUrl = typeof categorySlug !== 'undefined' ? '/shop/category/' + categorySlug : '/shop'; %>
+            <% let queryStr = typeof searchQuery !== 'undefined' && searchQuery ? '&search=' + searchQuery : ''; %>
+            
+            <% if (currentPage > 1) { %>
+                <a href="<%= baseUrl %>?page=<%= currentPage - 1 %><%= queryStr %>" style="padding: 0.5rem 1rem; border: 1px solid #cbd5e0; border-radius: 4px; text-decoration: none; color: #4a5568;">&laquo; Prev</a>
+            <% } %>
+            
+            <% for (let i = 1; i <= totalPages; i++) { %>
+                <a href="<%= baseUrl %>?page=<%= i %><%= queryStr %>" style="padding: 0.5rem 1rem; border: 1px solid #cbd5e0; border-radius: 4px; text-decoration: none; <%= i === currentPage ? 'background: #000; color: #fff; border-color: #000;' : 'color: #4a5568;' %>"><%= i %></a>
+            <% } %>
+
+            <% if (currentPage < totalPages) { %>
+                <a href="<%= baseUrl %>?page=<%= currentPage + 1 %><%= queryStr %>" style="padding: 0.5rem 1rem; border: 1px solid #cbd5e0; border-radius: 4px; text-decoration: none; color: #4a5568;">Next &raquo;</a>
+            <% } %>
+        </div>
+    <% } %>
+</section>

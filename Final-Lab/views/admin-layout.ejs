@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof title !== 'undefined' ? title : 'Admin Panel' %> | Shop Admin</title>
+  <style>
+    body { font-family: 'Inter', sans-serif; margin: 0; display: flex; min-height: 100vh; background: #f7fafc; color: #1a202c; }
+    .admin-sidebar { width: 250px; background: #1a202c; color: #fff; padding: 2rem 1rem; display: flex; flex-direction: column; }
+    .admin-sidebar h2 { margin-top: 0; padding-left: 1rem; margin-bottom: 2rem; font-size: 1.5rem; }
+    .admin-nav { list-style: none; padding: 0; margin: 0; flex: 1; }
+    .admin-nav li { margin-bottom: 0.5rem; }
+    .admin-nav a { display: block; padding: 0.75rem 1rem; color: #a0aec0; text-decoration: none; border-radius: 8px; transition: background 0.2s, color 0.2s; }
+    .admin-nav a:hover, .admin-nav a.active { background: #2d3748; color: #fff; }
+    .admin-main { flex: 1; padding: 2rem 3rem; overflow-y: auto; }
+    .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0; }
+    .admin-header h1 { margin: 0; font-size: 1.875rem; }
+    .btn-primary { background: #3182ce; color: #fff; padding: 0.5rem 1rem; border: none; border-radius: 4px; text-decoration: none; display: inline-block; }
+    .btn-danger { background: #e53e3e; color: #fff; padding: 0.5rem 1rem; border: none; border-radius: 4px; text-decoration: none; display: inline-block; cursor: pointer; }
+    .admin-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .admin-table th, .admin-table td { padding: 1rem; text-align: left; border-bottom: 1px solid #e2e8f0; }
+    .admin-table th { background: #f7fafc; font-weight: 600; color: #4a5568; }
+    .flash-msg { padding: 1rem; border-radius: 8px; margin-bottom: 1rem; }
+    .flash-success { background: #c6f6d5; color: #22543d; border: 1px solid #9ae6b4; }
+    .flash-error { background: #fed7d7; color: #822727; border: 1px solid #feb2b2; }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <aside class="admin-sidebar">
+    <h2>Shop Admin</h2>
+    <ul class="admin-nav">
+      <li><a href="/admin">Dashboard</a></li>
+      <li><a href="/admin/products">Products</a></li>
+      <li><a href="/admin/categories">Categories</a></li>
+      <li><a href="/admin/orders">Orders</a></li>
+      <li><a href="/sales">Sales Live</a></li>
+      <li style="margin-top: 2rem; border-top: 1px solid #4a5568; padding-top: 1rem;">
+        <a href="/">Back to Shop</a>
+      </li>
+      <li><a href="/auth/logout">Logout</a></li>
+    </ul>
+    <div style="margin-top: auto; padding-left: 1rem; color: #a0aec0; font-size: 0.875rem;">
+      User: <%= user.name %>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-header">
+      <h1><%= typeof title !== 'undefined' ? title : 'Dashboard' %></h1>
+    </div>
+
+    <% if (success_msg && success_msg.length > 0) { %>
+      <% success_msg.forEach(msg => { %>
+        <div class="flash-msg flash-success"><%= msg %></div>
+      <% }) %>
+    <% } %>
+    <% if (error_msg && error_msg.length > 0) { %>
+      <% error_msg.forEach(msg => { %>
+        <div class="flash-msg flash-error"><%= msg %></div>
+      <% }) %>
+    <% } %>
+
+    <%- body %>
+  </main>
+</body>
+</html>

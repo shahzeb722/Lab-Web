@@ -1,0 +1,28 @@
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+  <!-- Products Stat -->
+  <div class="admin-card" style="background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); text-align: center;">
+    <h3 style="color: #718096; font-size: 0.875rem; text-transform: uppercase; margin-bottom: 1rem;">Total Products</h3>
+    <p style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem;"><%= productCount %></p>
+    <a href="/admin/products" class="btn-primary" style="background: #4a5568; padding: 0.5rem 1rem;">Manage Products</a>
+  </div>
+
+  <!-- Categories Stat -->
+  <div class="admin-card" style="background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); text-align: center;">
+    <h3 style="color: #718096; font-size: 0.875rem; text-transform: uppercase; margin-bottom: 1rem;">Total Categories</h3>
+    <p style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: #38a169;"><%= categoryCount %></p>
+    <a href="/admin/categories" class="btn-primary" style="background: #4a5568; padding: 0.5rem 1rem;">Manage Categories</a>
+  </div>
+
+  <!-- Orders Stat -->
+  <div class="admin-card" style="background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); text-align: center;">
+    <h3 style="color: #718096; font-size: 0.875rem; text-transform: uppercase; margin-bottom: 1rem;">Total Orders</h3>
+    <p style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: #3182ce;"><%= orderCount %></p>
+    <a href="/admin/orders" class="btn-primary" style="background: #4a5568; padding: 0.5rem 1rem;">Manage Orders</a>
+  </div>
+
+  <!-- Users Stat -->
+  <div class="admin-card" style="background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); text-align: center;">
+    <h3 style="color: #718096; font-size: 0.875rem; text-transform: uppercase; margin-bottom: 1rem;">Total Users</h3>
+    <p style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: #d69e2e;"><%= userCount %></p>
+  </div>
+</div>

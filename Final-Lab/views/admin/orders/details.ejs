@@ -1,0 +1,57 @@
+<div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+  <div>
+    <div style="background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+      <h2 style="margin-top: 0; font-size: 1.25rem; margin-bottom: 1.5rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem;">Order Items</h2>
+      
+      <table class="admin-table" style="box-shadow: none;">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% order.items.forEach(item => { %>
+            <tr>
+              <td><%= item.product ? item.product.name : 'Product Deleted' %></td>
+              <td>$<%= item.price.toFixed(2) %></td>
+              <td><%= item.quantity %></td>
+              <td>$<%= (item.price * item.quantity).toFixed(2) %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      
+      <div style="text-align: right; margin-top: 1.5rem; font-size: 1.25rem; font-weight: 700;">
+        Order Total: $<%= order.total.toFixed(2) %>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div style="background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+      <h2 style="margin-top: 0; font-size: 1.25rem; margin-bottom: 1.5rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem;">Customer Info</h2>
+      <p style="margin: 0.5rem 0;"><strong>Name:</strong> <%= order.user.name %></p>
+      <p style="margin: 0.5rem 0;"><strong>Email:</strong> <%= order.user.email %></p>
+      
+      <h3 style="font-size: 1rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">Shipping Address</h3>
+      <p style="margin: 0.25rem 0; color: #4a5568;"><%= order.shippingInfo.address %></p>
+      <p style="margin: 0.25rem 0; color: #4a5568;"><%= order.shippingInfo.city %>, <%= order.shippingInfo.zip %></p>
+    </div>
+
+    <div style="background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+      <h2 style="margin-top: 0; font-size: 1.25rem; margin-bottom: 1.5rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem;">Update Status</h2>
+      <form action="/admin/orders/status/<%= order._id %>" method="POST">
+        <select name="status" style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e0; border-radius: 4px; margin-bottom: 1rem;">
+          <option value="pending" <%= order.status === 'pending' ? 'selected' : '' %>>Pending</option>
+          <option value="shipped" <%= order.status === 'shipped' ? 'selected' : '' %>>Shipped</option>
+          <option value="delivered" <%= order.status === 'delivered' ? 'selected' : '' %>>Delivered</option>
+          <option value="cancelled" <%= order.status === 'cancelled' ? 'selected' : '' %>>Cancelled</option>
+        </select>
+        <button type="submit" class="btn-primary" style="width: 100%;">Update Order</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="auth-container" style="max-width: 400px; margin: 4rem auto; padding: 2.5rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);">
+  <h2 style="text-align: center; margin-bottom: 2rem; font-weight: 700; color: #1a202c;">Create Account</h2>
+  <form action="/auth/register" method="POST">
+    <div style="margin-bottom: 1.5rem;">
+      <label for="name" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #4a5568;">Full Name</label>
+      <input type="text" id="name" name="name" required style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #cbd5e0; border-radius: 8px; font-size: 1rem;" placeholder="John Doe">
+    </div>
+    <div style="margin-bottom: 1.5rem;">
+      <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #4a5568;">Email Address</label>
+      <input type="email" id="email" name="email" required style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #cbd5e0; border-radius: 8px; font-size: 1rem;" placeholder="you@example.com">
+    </div>
+    <div style="margin-bottom: 2rem;">
+      <label for="password" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #4a5568;">Password</label>
+      <input type="password" id="password" name="password" required style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #cbd5e0; border-radius: 8px; font-size: 1rem;" placeholder="••••••••">
+    </div>
+    <button type="submit" style="width: 100%; padding: 0.875rem; background: #000; color: #fff; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s;">Create Account</button>
+  </form>
+  <p style="text-align: center; margin-top: 2rem; color: #718096;">
+    Already have an account? <a href="/auth/login" style="color: #2b6cb0; text-decoration: none; font-weight: 600;">Sign in</a>
+  </p>
+</div>

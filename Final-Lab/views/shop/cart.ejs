@@ -1,0 +1,56 @@
+<div class="cart-page" style="max-width: 1000px; margin: 2rem auto; padding: 0 1rem;">
+  <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 2rem;">Your Cart</h2>
+
+  <% if (cartItems.length > 0) { %>
+    <div class="cart-layout" style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+      <div class="cart-items" style="background: #fff; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+        <% cartItems.forEach(item => { %>
+          <div class="cart-item" style="display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem 0; border-bottom: 1px solid #edf2f7;">
+            <img src="<%= item.product.image %>" alt="<%= item.product.name %>" style="width: 100px; height: 100px; object-fit: contain; background: #f7fafc; border-radius: 8px; padding: 0.5rem;">
+            
+            <div style="flex: 1;">
+              <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem;"><%= item.product.name %></h3>
+              <p style="color: #718096; margin-bottom: 0.5rem;">Price: $<%= item.product.price.toFixed(2) %></p>
+              <form action="/cart/remove/<%= item.product._id %>" method="POST">
+                <button type="submit" style="background: none; border: none; color: #e53e3e; font-size: 0.875rem; font-weight: 600; cursor: pointer; padding: 0;">Remove</button>
+              </form>
+            </div>
+
+            <div style="text-align: center;">
+              <p style="font-weight: 600; margin-bottom: 0.5rem;">Qty: <%= item.quantity %></p>
+            </div>
+
+            <div style="text-align: right; min-width: 100px;">
+              <p style="font-weight: 700; font-size: 1.125rem;">$<%= (item.product.price * item.quantity).toFixed(2) %></p>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+
+      <div class="cart-summary" style="background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); height: fit-content;">
+        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem;">Order Summary</h3>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; color: #4a5568;">
+          <span>Subtotal</span>
+          <span>$<%= total.toFixed(2) %></span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; color: #4a5568;">
+          <span>Shipping</span>
+          <span>Free</span>
+        </div>
+        <hr style="border: none; border-top: 1px solid #edf2f7; margin: 1.5rem 0;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 2rem; font-size: 1.25rem; font-weight: 700;">
+          <span>Total</span>
+          <span>$<%= total.toFixed(2) %></span>
+        </div>
+        <a href="/checkout" style="display: block; text-align: center; width: 100%; padding: 1rem; background: #000; color: #fff; border-radius: 8px; font-weight: 600; text-decoration: none; transition: background 0.2s;">Proceed to Checkout</a>
+      </div>
+    </div>
+  <% } else { %>
+    <div style="text-align: center; padding: 4rem 2rem; background: #fff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+      <div style="font-size: 4rem; margin-bottom: 1rem;">🛒</div>
+      <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem;">Your cart is empty</h3>
+      <p style="color: #718096; margin-bottom: 2rem;">Looks like you haven't added anything to your cart yet.</p>
+      <a href="/shop" style="display: inline-block; padding: 0.875rem 2rem; background: #000; color: #fff; border-radius: 8px; font-weight: 600; text-decoration: none;">Continue Shopping</a>
+    </div>
+  <% } %>
+</div>

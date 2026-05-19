@@ -1,0 +1,40 @@
+<table class="admin-table">
+  <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>Customer</th>
+      <th>Date</th>
+      <th>Total</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if (orders.length > 0) { %>
+      <% orders.forEach(order => { %>
+        <tr>
+          <td><%= order._id.toString().substring(0, 8) %>...</td>
+          <td><%= order.user.name %></td>
+          <td><%= new Date(order.createdAt).toLocaleDateString() %></td>
+          <td>$<%= order.total.toFixed(2) %></td>
+          <td>
+            <span style="padding: 0.25rem 0.5rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+              <%= order.status === 'delivered' ? 'background: #c6f6d5; color: #22543d;' : 
+                 order.status === 'shipped' ? 'background: #bee3f8; color: #2c5282;' : 
+                 order.status === 'cancelled' ? 'background: #fed7d7; color: #822727;' : 
+                 'background: #fefcbf; color: #744210;' %>">
+              <%= order.status %>
+            </span>
+          </td>
+          <td>
+            <a href="/admin/orders/<%= order._id %>" class="btn-primary" style="background: #4a5568;">View Details</a>
+          </td>
+        </tr>
+      <% }) %>
+    <% } else { %>
+      <tr>
+        <td colspan="6" style="text-align: center; color: #718096;">No orders found.</td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>

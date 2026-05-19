@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product | Admin</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="admin-body">
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="admin-brand">Samsung Admin</div>
+            <nav class="admin-nav">
+                <a href="/admin/products" class="admin-nav-link">Products</a>
+                <a href="/products" class="admin-nav-link">View Store</a>
+                <a href="/" class="admin-nav-link">Home</a>
+            </nav>
+        </aside>
+
+        <main class="admin-main">
+            <div class="admin-header">
+                <div>
+                    <h1>Edit Product</h1>
+                    <p class="admin-subtitle">Update product details and inventory.</p>
+                </div>
+                <a class="btn btn-outline" href="/admin/products">Back</a>
+            </div>
+
+            <% if (errors && errors.length) { %>
+                <div class="admin-alert admin-alert--error">
+                    <ul>
+                        <% errors.forEach(function (error) { %>
+                            <li><%= error %></li>
+                        <% }); %>
+                    </ul>
+                </div>
+            <% } %>
+
+            <form class="admin-form" method="POST" action="/admin/products/<%= product._id %>" enctype="multipart/form-data">
+                <div class="admin-form-grid">
+                    <div class="admin-field">
+                        <label for="name">Product Name</label>
+                        <input type="text" id="name" name="name" value="<%= product.name %>" required>
+                    </div>
+                    <div class="admin-field">
+                        <label for="price">Price</label>
+                        <input type="number" id="price" name="price" step="0.01" min="0" value="<%= product.price %>" required>
+                    </div>
+                    <div class="admin-field">
+                        <label for="category">Category</label>
+                        <select id="category" name="category" required>
+                            <% categories.forEach(function (category) { %>
+                                <option value="<%= category %>" <%= product.category === category ? 'selected' : '' %>><%= category %></option>
+                            <% }); %>
+                        </select>
+                    </div>
+                    <div class="admin-field">
+                        <label for="rating">Rating</label>
+                        <input type="number" id="rating" name="rating" step="0.1" min="0" max="5" value="<%= product.rating %>" required>
+                    </div>
+                    <div class="admin-field">
+                        <label for="stock">Stock</label>
+                        <input type="number" id="stock" name="stock" min="0" value="<%= product.stock %>" required>
+                    </div>
+                    <div class="admin-field">
+                        <label for="image">Replace Image</label>
+                        <input type="file" id="image" name="image" accept="image/*">
+                        <% if (product.image) { %>
+                            <div class="admin-image-preview">
+                                <img src="<%= product.image %>" alt="<%= product.name %>">
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+
+                <div class="admin-field">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" rows="4"><%= product.description || '' %></textarea>
+                </div>
+
+                <div class="admin-actions">
+                    <button class="btn btn-black" type="submit">Update Product</button>
+                    <a class="btn btn-outline" href="/admin/products">Cancel</a>
+                </div>
+            </form>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,375 @@
+<style>
+/* ===========================
+   Sales Dashboard Styles
+=========================== */
+.sales-page {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+  min-height: 80vh;
+  padding: 48px 24px 64px;
+  font-family: 'Inter', sans-serif;
+}
+
+.sales-page .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.sales-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.sales-header-left h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 6px;
+  letter-spacing: -0.5px;
+}
+
+.sales-header-left p {
+  color: #9ca3af;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.live-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 999px;
+  padding: 8px 18px;
+  color: #10b981;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(1.4); }
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.stat-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(12px);
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: 20px 20px 0 0;
+}
+
+.stat-card--revenue::before { background: linear-gradient(90deg, #6366f1, #8b5cf6); }
+.stat-card--orders::before  { background: linear-gradient(90deg, #0ea5e9, #06b6d4); }
+.stat-card--avg::before     { background: linear-gradient(90deg, #f59e0b, #f97316); }
+.stat-card--top::before     { background: linear-gradient(90deg, #10b981, #34d399); }
+
+.stat-icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1;
+  transition: all 0.4s ease;
+}
+
+.stat-value.updating {
+  opacity: 0.5;
+  transform: scale(0.97);
+}
+
+.stat-sublabel {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-top: 8px;
+}
+
+/* Recent Transactions */
+.transactions-section {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+  padding: 28px;
+  backdrop-filter: blur(12px);
+}
+
+.transactions-section h2 {
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.transactions-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.transactions-table th {
+  text-align: left;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #6b7280;
+  padding: 0 16px 16px;
+  font-weight: 600;
+}
+
+.transactions-table td {
+  padding: 14px 16px;
+  color: #d1d5db;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.transactions-table tr:hover td {
+  background: rgba(255,255,255,0.03);
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge--completed { background: rgba(16,185,129,0.15); color: #10b981; }
+
+/* Status Bar */
+.status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+  color: #6b7280;
+  font-size: 0.8rem;
+}
+
+#lastUpdated { color: #9ca3af; }
+#updateStatus { color: #10b981; }
+</style>
+
+<div class="sales-page">
+  <div class="container">
+
+    <!-- Page Header -->
+    <div class="sales-header">
+      <div class="sales-header-left">
+        <h1>📊 Sales Dashboard</h1>
+        <p>Real-time sales performance metrics for your store</p>
+      </div>
+      <div class="live-badge">
+        <span class="live-dot"></span>
+        LIVE — updates every 10s
+      </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+
+      <div class="stat-card stat-card--revenue">
+        <span class="stat-icon">💰</span>
+        <div class="stat-label">Total Revenue</div>
+        <div class="stat-value" id="totalRevenue">$<%= stats.totalRevenue.toFixed(2) %></div>
+        <div class="stat-sublabel">Cumulative store earnings</div>
+      </div>
+
+      <div class="stat-card stat-card--orders">
+        <span class="stat-icon">🛒</span>
+        <div class="stat-label">Total Orders</div>
+        <div class="stat-value" id="totalOrders"><%= stats.totalOrders %></div>
+        <div class="stat-sublabel">Completed purchases</div>
+      </div>
+
+      <div class="stat-card stat-card--avg">
+        <span class="stat-icon">📈</span>
+        <div class="stat-label">Avg. Order Value</div>
+        <div class="stat-value" id="avgOrderValue">$<%= stats.avgOrderValue.toFixed(2) %></div>
+        <div class="stat-sublabel">Revenue per order</div>
+      </div>
+
+      <div class="stat-card stat-card--top">
+        <span class="stat-icon">🏆</span>
+        <div class="stat-label">Top-Selling Product</div>
+        <div class="stat-value" id="topProduct" style="font-size:1.1rem; line-height:1.4; padding-top:4px;">
+          <%= stats.topProduct || 'N/A' %>
+        </div>
+        <div class="stat-sublabel">By order frequency</div>
+      </div>
+
+    </div>
+
+    <!-- Recent Transactions Table -->
+    <div class="transactions-section">
+      <h2>🧾 Recent Transactions</h2>
+      <table class="transactions-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Customer</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody id="recentTransactions">
+          <% if (stats.recentOrders && stats.recentOrders.length > 0) { %>
+            <% stats.recentOrders.forEach(function(order, i) { %>
+              <tr>
+                <td style="color:#6b7280"><%= i + 1 %></td>
+                <td><%= order.customerName %></td>
+                <td style="color:#10b981; font-weight:600;">$<%= order.totalAmount.toFixed(2) %></td>
+                <td><span class="badge badge--completed"><%= order.status %></span></td>
+                <td><%= new Date(order.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %></td>
+              </tr>
+            <% }); %>
+          <% } else { %>
+            <tr>
+              <td colspan="5" style="text-align:center; color:#6b7280; padding: 32px;">No transactions yet.</td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+
+      <!-- Status Bar -->
+      <div class="status-bar">
+        <span id="updateStatus">⏳ Polling active</span>
+        <span>|</span>
+        <span>Last updated: <span id="lastUpdated">just now</span></span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================
+     jQuery — Real-Time Polling every 10 seconds
+     Hits GET /api/sales-data and updates DOM without page reload
+============================================================ -->
+<script>
+$(document).ready(function () {
+
+  // Helper to flash a value update animation
+  function flashUpdate($el) {
+    $el.addClass('updating');
+    setTimeout(function () { $el.removeClass('updating'); }, 400);
+  }
+
+  // Helper to format time
+  function nowTime() {
+    return new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  }
+
+  // Function that polls the JSON API and updates the dashboard
+  function refreshSalesData() {
+    $.ajax({
+      url: '/api/sales-data',
+      method: 'GET',
+      dataType: 'json',
+      success: function (data) {
+
+        // --- Update stat cards ---
+        flashUpdate($('#totalRevenue'));
+        flashUpdate($('#totalOrders'));
+        flashUpdate($('#avgOrderValue'));
+        flashUpdate($('#topProduct'));
+
+        setTimeout(function () {
+          $('#totalRevenue').text('$' + parseFloat(data.totalRevenue).toFixed(2));
+          $('#totalOrders').text(data.totalOrders);
+          $('#avgOrderValue').text('$' + parseFloat(data.avgOrderValue).toFixed(2));
+          $('#topProduct').text(data.topProduct || 'N/A');
+        }, 200);
+
+        // --- Update recent transactions table ---
+        if (data.recentOrders && data.recentOrders.length > 0) {
+          var rows = '';
+          $.each(data.recentOrders, function (i, order) {
+            var date = new Date(order.createdAt).toLocaleDateString('en-US', {
+              month: 'short', day: 'numeric', year: 'numeric'
+            });
+            rows += '<tr>' +
+              '<td style="color:#6b7280">' + (i + 1) + '</td>' +
+              '<td>' + order.customerName + '</td>' +
+              '<td style="color:#10b981; font-weight:600;">$' + parseFloat(order.totalAmount).toFixed(2) + '</td>' +
+              '<td><span class="badge badge--completed">' + order.status + '</span></td>' +
+              '<td>' + date + '</td>' +
+              '</tr>';
+          });
+          $('#recentTransactions').fadeOut(150, function () {
+            $(this).html(rows).fadeIn(200);
+          });
+        }
+
+        // --- Update status bar ---
+        $('#lastUpdated').text(nowTime());
+        $('#updateStatus').css('color', '#10b981').text('✅ Live');
+      },
+      error: function () {
+        $('#updateStatus').css('color', '#ef4444').text('⚠ Fetch failed — retrying...');
+      }
+    });
+  }
+
+  // Start polling immediately and then every 10 seconds
+  refreshSalesData();
+  setInterval(refreshSalesData, 10000);
+});
+</script>
